@@ -2,9 +2,13 @@
 
 require('dotenv').config();
 
-module.exports = function (app) {
+console.log("what")
+
+module.exports = function (app, dbClient) {
   app.route('/api/stock-prices')
     .get(async function (req, res) {
+      console.log("got here");
+
       try {
         const { stock, like } = req.query;
 
