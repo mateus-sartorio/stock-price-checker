@@ -21,7 +21,7 @@ module.exports = function (app, dbClient) {
         const data = await response.json();
 
         if(data === "Invalid symbol") {
-          throw new Error("Invalid symbol");
+          throw new Error("invalid symbol");
         }
 
         let dbUser = await usersCollection.findOne({ ipHash });
@@ -68,7 +68,14 @@ module.exports = function (app, dbClient) {
         res.json(responsePayload);
       }
       catch(e) {
-        console.log("error: ", e);
+        const errorPayload = {
+          stockData: {
+            error: e.message,
+            likes: 0
+          }
+        };
+
+        res.json(errorPayload);
       }
     });
 };
