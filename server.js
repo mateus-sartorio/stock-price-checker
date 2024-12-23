@@ -27,6 +27,7 @@ const app = express();
     helmet.contentSecurityPolicy({
       directives: {
         scriptSrc: ["'self'"], // Allow scripts from the same origin
+        styleSrc: ["'self'"], // Allow styles from the same origin
       },
     })
   );
